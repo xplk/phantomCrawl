@@ -56,6 +56,11 @@ urlStore.setFilters = function(filters) {
  * @param force {boolean} Set it to true if ressubmiting an url that had the wrong type. `url.mime` is mandatory in that case
  */
 urlStore.add = function(url, force) {
+    var protocol = require('url').parse(url.url).protocol;
+    if(['http:','https:'].indexOf(protocol) == -1){
+        return false;
+    }
+
 	if ((force || !this.urlMap[url.path]) && this.isValid(url)) {
 		var type = url.crashed ? 'CrashedPages' :
 		           urlType.isPage(url) ? 'Pages' :
