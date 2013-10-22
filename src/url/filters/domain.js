@@ -8,6 +8,7 @@ domain.primaryDomains = {};
 domain.addPrimary = function(url) {
 	url = urlModule.parse(url.url);
 	domain.primaryDomains[url.hostname] = true;
+    domain.primaryDomains['www.'+url.hostname] = true;
 };
 
 domain.filter = function(url) {

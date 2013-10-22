@@ -60,8 +60,8 @@ urlStore.add = function(url, force) {
     if(['http:','https:'].indexOf(protocol) == -1){
         return false;
     }
-
-	if ((force || !this.urlMap[url.path]) && this.isValid(url)) {
+    var valid = this.isValid(url); //????MAGIC!
+	if ((force || !this.urlMap[url.path]) && valid) {
 		var type = url.crashed ? 'CrashedPages' :
 		           urlType.isPage(url) ? 'Pages' :
 		           'Ressources';
